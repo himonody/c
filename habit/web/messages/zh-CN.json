@@ -1,0 +1,141 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "confirm": "确认",
+    "cancel": "取消",
+    "submit": "提交",
+    "save": "保存",
+    "back": "返回",
+    "close": "关闭",
+    "detail": "详情"
+  },
+  "auth": {
+    "login": "登录",
+    "register": "注册",
+    "logout": "退出",
+    "username": "用户名",
+    "password": "密码",
+    "payPassword": "支付密码",
+    "oldPassword": "旧密码",
+    "newPassword": "新密码",
+    "confirmPassword": "确认密码",
+    "loginSuccess": "登录成功",
+    "registerSuccess": "注册成功",
+    "logoutSuccess": "退出成功"
+  },
+  "challenge": {
+    "title": "挑战",
+    "currentChallenge": "当前挑战",
+    "prizePool": "奖池金额",
+    "participants": "参与人数",
+    "duration": "挑战周期",
+    "days": "天",
+    "rules": "挑战规则",
+    "join": "参与挑战",
+    "quit": "退出挑战",
+    "myChallenges": "我的挑战",
+    "joinSuccess": "参与成功",
+    "quitSuccess": "退出成功",
+    "checkInTime": "打卡时间",
+    "entryFee": "挑战金"
+  },
+  "checkin": {
+    "title": "每日打卡",
+    "checkInButton": "立即打卡",
+    "todayChecked": "今日已打卡",
+    "checkInSuccess": "打卡成功！",
+    "todayStats": "今日统计",
+    "checkedIn": "已打卡",
+    "notCheckedIn": "未打卡",
+    "todayRanking": "今日排行",
+    "calendar": "日历",
+    "history": "历史记录",
+    "supplement": "补签",
+    "amount": "金额",
+    "loss": "损失",
+    "status": {
+      "success": "合格",
+      "late": "迟到",
+      "missed": "未打卡",
+      "supplemented": "已补签"
+    }
+  },
+  "ranking": {
+    "title": "排行榜",
+    "invite": "邀请榜",
+    "wealth": "财富榜",
+    "persistence": "毅力榜",
+    "inviteCount": "邀请人数",
+    "totalIncome": "累计收益",
+    "streakDays": "连续天数"
+  },
+  "profile": {
+    "title": "个人中心",
+    "nickname": "昵称",
+    "avatar": "头像",
+    "assets": "资产",
+    "balance": "账户余额",
+    "experienceBalance": "体验金",
+    "challengeBalance": "挑战金",
+    "totalIncome": "累计收益",
+    "data": "数据",
+    "todayInvite": "今日邀请",
+    "totalInvite": "总邀请数",
+    "inviteIncome": "邀请收益",
+    "streakDays": "连续打卡",
+    "totalCheckIn": "累计打卡",
+    "actions": "功能",
+    "accountDetail": "账户明细",
+    "myInvite": "我的邀请",
+    "supplementCard": "补签卡",
+    "checkInQuery": "打卡查询",
+    "updateProfile": "更新资料",
+    "changePassword": "修改密码",
+    "setPayPassword": "设置支付密码",
+    "updateSuccess": "更新成功"
+  },
+  "invite": {
+    "title": "邀请好友",
+    "myInvites": "我的邀请",
+    "inviteCode": "邀请码",
+    "copy": "复制",
+    "share": "分享",
+    "inviteStats": "邀请统计",
+    "inviteSuccess": "邀请链接已复制"
+  },
+  "wallet": {
+    "title": "我的钱包",
+    "balance": "余额",
+    "frozen": "冻结",
+    "withdraw": "提现",
+    "withdrawAmount": "提现金额",
+    "withdrawType": "提现方式",
+    "account": "账号",
+    "withdrawSuccess": "提现申请已提交",
+    "transactions": "资金流水",
+    "todayIncome": "今日收益",
+    "todayCheckInAmount": "今日打卡金额",
+    "todayMissedAmount": "今日未打卡金额",
+    "todaySubsidy": "今日补贴",
+    "type": {
+      "checkIn": "打卡",
+      "invite": "邀请",
+      "subsidy": "补贴",
+      "withdraw": "提现",
+      "refund": "退款"
+    }
+  },
+  "home": {
+    "welcome": "欢迎",
+    "newbieGift": "新人礼包",
+    "customerService": "客服"
+  },
+  "nav": {
+    "home": "首页",
+    "checkin": "打卡",
+    "ranking": "排行",
+    "profile": "我的"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "common": {
+    "loading": "Memuatkan...",
+    "error": "Ralat",
+    "success": "Berjaya",
+    "confirm": "Sahkan",
+    "cancel": "Batal",
+    "submit": "Hantar",
+    "save": "Simpan",
+    "back": "Kembali",
+    "close": "Tutup",
+    "detail": "Butiran"
+  },
+  "auth": {
+    "login": "Log Masuk",
+    "register": "Daftar",
+    "logout": "Log Keluar",
+    "username": "Nama Pengguna",
+    "password": "Kata Laluan",
+    "payPassword": "Kata Laluan Pembayaran",
+    "oldPassword": "Kata Laluan Lama",
+    "newPassword": "Kata Laluan Baharu",
+    "confirmPassword": "Sahkan Kata Laluan",
+    "loginSuccess": "Log masuk berjaya",
+    "registerSuccess": "Pendaftaran berjaya",
+    "logoutSuccess": "Log keluar berjaya"
+  },
+  "challenge": {
+    "title": "Cabaran",
+    "currentChallenge": "Cabaran Semasa",
+    "prizePool": "Kolam Hadiah",
+    "participants": "Peserta",
+    "duration": "Tempoh",
+    "days": "hari",
+    "rules": "Peraturan",
+    "join": "Sertai Cabaran",
+    "quit": "Keluar Cabaran",
+    "myChallenges": "Cabaran Saya",
+    "joinSuccess": "Berjaya menyertai",
+    "quitSuccess": "Berjaya keluar",
+    "checkInTime": "Masa Daftar Masuk",
+    "entryFee": "Yuran Penyertaan"
+  },
+  "checkin": {
+    "title": "Daftar Masuk Harian",
+    "checkInButton": "Daftar Masuk",
+    "todayChecked": "Telah daftar masuk hari ini",
+    "checkInSuccess": "Daftar masuk berjaya!",
+    "todayStats": "Statistik Hari Ini",
+    "checkedIn": "Daftar Masuk",
+    "notCheckedIn": "Belum Daftar Masuk",
+    "todayRanking": "Kedudukan Hari Ini",
+    "calendar": "Kalendar",
+    "history": "Sejarah",
+    "supplement": "Tambahan",
+    "amount": "Jumlah",
+    "loss": "Kerugian",
+    "status": {
+      "success": "Berjaya",
+      "late": "Lewat",
+      "missed": "Terlepas",
+      "supplemented": "Ditambah"
+    }
+  },
+  "ranking": {
+    "title": "Kedudukan",
+    "invite": "Kedudukan Jemputan",
+    "wealth": "Kedudukan Kekayaan",
+    "persistence": "Kedudukan Ketekalan",
+    "inviteCount": "Jemputan",
+    "totalIncome": "Jumlah Pendapatan",
+    "streakDays": "Hari Berturut-turut"
+  },
+  "profile": {
+    "title": "Profil Saya",
+    "nickname": "Nama Panggilan",
+    "avatar": "Avatar",
+    "assets": "Aset",
+    "balance": "Baki",
+    "experienceBalance": "Baki Pengalaman",
+    "challengeBalance": "Baki Cabaran",
+    "totalIncome": "Jumlah Pendapatan",
+    "data": "Data",
+    "todayInvite": "Jemputan Hari Ini",
+    "totalInvite": "Jumlah Jemputan",
+    "inviteIncome": "Pendapatan Jemputan",
+    "streakDays": "Hari Berturut-turut",
+    "totalCheckIn": "Jumlah Daftar Masuk",
+    "actions": "Tindakan",
+    "accountDetail": "Butiran Akaun",
+    "myInvite": "Jemputan Saya",
+    "supplementCard": "Kad Tambahan",
+    "checkInQuery": "Carian Daftar Masuk",
+    "updateProfile": "Kemas Kini Profil",
+    "changePassword": "Tukar Kata Laluan",
+    "setPayPassword": "Tetapkan Kata Laluan Pembayaran",
+    "updateSuccess": "Kemas kini berjaya"
+  },
+  "invite": {
+    "title": "Jemput Rakan",
+    "myInvites": "Jemputan Saya",
+    "inviteCode": "Kod Jemputan",
+    "copy": "Salin",
+    "share": "Kongsi",
+    "inviteStats": "Statistik Jemputan",
+    "inviteSuccess": "Pautan jemputan disalin"
+  },
+  "wallet": {
+    "title": "Dompet Saya",
+    "balance": "Baki",
+    "frozen": "Beku",
+    "withdraw": "Pengeluaran",
+    "withdrawAmount": "Jumlah Pengeluaran",
+    "withdrawType": "Jenis Pengeluaran",
+    "account": "Akaun",
+    "withdrawSuccess": "Permohonan pengeluaran dibuat",
+    "transactions": "Transaksi",
+    "todayIncome": "Pendapatan Hari Ini",
+    "todayCheckInAmount": "Jumlah Daftar Masuk Hari Ini",
+    "todayMissedAmount": "Jumlah Terlepas Hari Ini",
+    "todaySubsidy": "Subsidi Hari Ini",
+    "type": {
+      "checkIn": "Daftar Masuk",
+      "invite": "Jemputan",
+      "subsidy": "Subsidi",
+      "withdraw": "Pengeluaran",
+      "refund": "Pemulangan"
+    }
+  },
+  "home": {
+    "welcome": "Selamat Datang",
+    "newbieGift": "Hadiah Pendatang Baru",
+    "customerService": "Khidmat Pelanggan"
+  },
+  "nav": {
+    "home": "Utama",
+    "checkin": "Daftar Masuk",
+    "ranking": "Kedudukan",
+    "profile": "Profil"
+  }
+}

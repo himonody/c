@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 按照UI规范的颜色系统 */
+    --background: 219 24% 97%;        /* #F8FAFC */
+    --foreground: 222 47% 11%;        /* #0F172A */
+    --card: 0 0% 100%;                /* #FFFFFF */
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary - 蓝色 (金融/信任) #3B82F6 */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Success - 绿色 #22C55E */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning - 橙色 (奖池/挑战) #F59E0B */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Secondary */
+    --secondary: 215 16% 47%;         /* #64748B */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 13% 91%;
+    --muted-foreground: 215 16% 47%;  /* #64748B */
+
+    --accent: 220 13% 91%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;            /* #E5E7EB */
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+
+    /* 圆角系统 */
+    --radius-sm: 0.75rem;   /* 12px 小组件 */
+    --radius-md: 1rem;      /* 16px 卡片 */
+    --radius-lg: 1.5rem;    /* 24px 大卡片 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* 高级感阴影 */
+  .shadow-card {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@layer components {
+  /* 主按钮 - 56px 高度 */
+  .btn-primary {
+    @apply h-14 px-6 bg-primary text-primary-foreground rounded-2xl font-semibold
+           hover:opacity-90 active:scale-95 transition-all duration-200;
+  }
+
+  /* 卡片样式 */
+  .card-base {
+    @apply bg-card rounded-2xl shadow-card;
+  }
+
+  .card-large {
+    @apply bg-card rounded-3xl shadow-card;
+  }
+}
+
+/* 平滑滚动 */
+@layer utilities {
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}

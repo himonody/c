@@ -1,0 +1,141 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "save": "Save",
+    "back": "Back",
+    "close": "Close",
+    "detail": "Detail"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "payPassword": "Payment Password",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "loginSuccess": "Login successful",
+    "registerSuccess": "Registration successful",
+    "logoutSuccess": "Logout successful"
+  },
+  "challenge": {
+    "title": "Challenge",
+    "currentChallenge": "Current Challenge",
+    "prizePool": "Prize Pool",
+    "participants": "Participants",
+    "duration": "Duration",
+    "days": "days",
+    "rules": "Rules",
+    "join": "Join Challenge",
+    "quit": "Quit Challenge",
+    "myChallenges": "My Challenges",
+    "joinSuccess": "Joined successfully",
+    "quitSuccess": "Quit successfully",
+    "checkInTime": "Check-in Time",
+    "entryFee": "Entry Fee"
+  },
+  "checkin": {
+    "title": "Daily Check-in",
+    "checkInButton": "Check In",
+    "todayChecked": "Checked in today",
+    "checkInSuccess": "Check-in successful!",
+    "todayStats": "Today's Stats",
+    "checkedIn": "Checked In",
+    "notCheckedIn": "Not Checked In",
+    "todayRanking": "Today's Ranking",
+    "calendar": "Calendar",
+    "history": "History",
+    "supplement": "Supplement",
+    "amount": "Amount",
+    "loss": "Loss",
+    "status": {
+      "success": "Success",
+      "late": "Late",
+      "missed": "Missed",
+      "supplemented": "Supplemented"
+    }
+  },
+  "ranking": {
+    "title": "Ranking",
+    "invite": "Invite Ranking",
+    "wealth": "Wealth Ranking",
+    "persistence": "Persistence Ranking",
+    "inviteCount": "Invites",
+    "totalIncome": "Total Income",
+    "streakDays": "Streak Days"
+  },
+  "profile": {
+    "title": "My Profile",
+    "nickname": "Nickname",
+    "avatar": "Avatar",
+    "assets": "Assets",
+    "balance": "Balance",
+    "experienceBalance": "Experience Balance",
+    "challengeBalance": "Challenge Balance",
+    "totalIncome": "Total Income",
+    "data": "Data",
+    "todayInvite": "Today's Invites",
+    "totalInvite": "Total Invites",
+    "inviteIncome": "Invite Income",
+    "streakDays": "Streak Days",
+    "totalCheckIn": "Total Check-ins",
+    "actions": "Actions",
+    "accountDetail": "Account Detail",
+    "myInvite": "My Invites",
+    "supplementCard": "Supplement Card",
+    "checkInQuery": "Check-in Query",
+    "updateProfile": "Update Profile",
+    "changePassword": "Change Password",
+    "setPayPassword": "Set Payment Password",
+    "updateSuccess": "Update successful"
+  },
+  "invite": {
+    "title": "Invite Friends",
+    "myInvites": "My Invites",
+    "inviteCode": "Invite Code",
+    "copy": "Copy",
+    "share": "Share",
+    "inviteStats": "Invite Stats",
+    "inviteSuccess": "Invite link copied"
+  },
+  "wallet": {
+    "title": "My Wallet",
+    "balance": "Balance",
+    "frozen": "Frozen",
+    "withdraw": "Withdraw",
+    "withdrawAmount": "Withdraw Amount",
+    "withdrawType": "Withdraw Type",
+    "account": "Account",
+    "withdrawSuccess": "Withdrawal requested",
+    "transactions": "Transactions",
+    "todayIncome": "Today's Income",
+    "todayCheckInAmount": "Today's Check-in Amount",
+    "todayMissedAmount": "Today's Missed Amount",
+    "todaySubsidy": "Today's Subsidy",
+    "type": {
+      "checkIn": "Check-in",
+      "invite": "Invite",
+      "subsidy": "Subsidy",
+      "withdraw": "Withdraw",
+      "refund": "Refund"
+    }
+  },
+  "home": {
+    "welcome": "Welcome",
+    "newbieGift": "Newbie Gift",
+    "customerService": "Customer Service"
+  },
+  "nav": {
+    "home": "Home",
+    "checkin": "Check-in",
+    "ranking": "Ranking",
+    "profile": "Profile"
+  }
+}
