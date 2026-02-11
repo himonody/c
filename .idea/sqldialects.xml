@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/ent/ent/entc/integration/multischema/migrations/20231112192027.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/compositetypes/migrations/20240713195943.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/compositetypes/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/domaintypes/migrations/20240712090543.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/domaintypes/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/enumtypes/migrations/20240712145529.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/enumtypes/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/extensions/migrations/20240713193406.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/extensions/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/functionalidx/migrations/20240720083105.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/functionalidx/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20221114082343_create_users.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20221114090322_add_age.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20221114101516_add_name.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20221126173531_add_user_tags.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20221126185750_backfill_user_tags.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20230101214930_default_values.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20231231083716_add_card_number.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20231231091550_add_pet_name.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20231231101555_add_payment.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20231231102849_add_currency.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20231231120006_add_session.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20231231123114_hash_card.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20240229200634_add_card_type.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/migration/ent/migrate/migrations/20240317101809_add_payment_vnd.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/rls/migrations/20240714101101.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/rls/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/start/ent/migrate/migrations/20230219130733_initial.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/triggers/migrations/20240713061538.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/triggers/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ent/ent/examples/viewcomposite/schema.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/compare/model/user.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/command/testdata/user.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/example/sql/user.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/gen/testdata/user.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/parser/testdata/user.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/util/studeat.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/util/student.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/util/sub/sub.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/go-zero/go-zero/tools/goctl/model/sql/util/xx.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/gorm/gen/tests/tables.sql" dialect="GenericSQL" />
+  </component>
+</project>
