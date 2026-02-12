@@ -11,16 +11,26 @@ type ChallengePoolInfo struct {
 }
 
 type ChallengeInfo struct {
-	ID            int64              `json:"id"`
-	DayCount      int                `json:"dayCount"`
-	Amount        string             `json:"amount"`
-	CheckinStart  uint16             `json:"checkinStart"`
-	CheckinEnd    uint16             `json:"checkinEnd"`
-	PlatformBonus string             `json:"platformBonus"`
-	Status        int8               `json:"status"`
-	Sort          int8               `json:"sort"`
-	CreatedAt     string             `json:"createdAt"`
-	Pool          *ChallengePoolInfo `json:"pool"`
+	ID                   int    `json:"id"`
+	IsAutoSettle         bool   `json:"isAutoSettle"`
+	SettleTime           string `json:"settleTime"`
+	CycleDays            int    `json:"cycleDays"`
+	StartTime            string `json:"startTime"`
+	EndTime              string `json:"endTime"`
+	MaxDepositAmount     int    `json:"maxDepositAmount"`
+	MinWithdrawAmount    int    `json:"minWithdrawAmount"`
+	MaxDailyProfit       int    `json:"maxDailyProfit"`
+	ExcessTaxRate        int    `json:"excessTaxRate"`
+	MinDailyProfit       int    `json:"minDailyProfit"`
+	DailyPlatformSubsidy int    `json:"dailyPlatformSubsidy"`
+	UncheckDeductRate    int    `json:"uncheckDeductRate"`
+	MinUncheckUsers      int    `json:"minUncheckUsers"`
+	CommissionFollow     int    `json:"commissionFollow"`
+	CommissionJoin       int    `json:"commissionJoin"`
+	CommissionL1         int    `json:"commissionL1"`
+	CommissionL2         int    `json:"commissionL2"`
+	CommissionL3         int    `json:"commissionL3"`
+	UpdatedAt            string `json:"updatedAt"`
 }
 
 type ChallengeListResponse struct {
@@ -31,16 +41,23 @@ type ChallengeListResponse struct {
 }
 
 type ChallengeUpsertRequest struct {
-	ID            int64  `json:"id"`
-	DayCount      int    `json:"dayCount"`
-	Amount        string `json:"amount"`
-	CheckinStart  uint16 `json:"checkinStart"`
-	CheckinEnd    uint16 `json:"checkinEnd"`
-	PlatformBonus string `json:"platformBonus"`
-	Status        int8   `json:"status"`
-	Sort          int8   `json:"sort"`
-
-	PoolID    int64  `json:"poolId"`
-	StartDate string `json:"startDate"`
-	EndDate   string `json:"endDate"`
+	ID                   int64  `json:"id"`
+	IsAutoSettle         bool   `json:"isAutoSettle"`
+	SettleTime           string `json:"settleTime"`
+	CycleDays            int    `json:"cycleDays"`
+	StartTime            string `json:"startTime"`
+	EndTime              string `json:"endTime"`
+	MaxDepositAmount     int    `json:"maxDepositAmount"`
+	MinWithdrawAmount    int    `json:"minWithdrawAmount"`
+	MaxDailyProfit       int    `json:"maxDailyProfit"`
+	ExcessTaxRate        int    `json:"excessTaxRate"`
+	MinDailyProfit       int    `json:"minDailyProfit"`
+	DailyPlatformSubsidy int    `json:"dailyPlatformSubsidy"`
+	UncheckDeductRate    int    `json:"uncheckDeductRate"`
+	MinUncheckUsers      int    `json:"minUncheckUsers"`
+	CommissionFollow     int    `json:"commissionFollow"`
+	CommissionJoin       int    `json:"commissionJoin"`
+	CommissionL1         int    `json:"commissionL1"`
+	CommissionL2         int    `json:"commissionL2"`
+	CommissionL3         int    `json:"commissionL3"`
 }

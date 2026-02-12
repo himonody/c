@@ -31,14 +31,14 @@ func (h *ChallengeHandler) List(c *fiber.Ctx) error {
 	return response.Success(c, resp)
 }
 
-// Create 新增挑战（同时新增奖池）
+// Create 新增挑战
 func (h *ChallengeHandler) Create(c *fiber.Ctx) error {
 	var req dto.ChallengeUpsertRequest
 	if err := c.BodyParser(&req); err != nil {
 		return response.Error(c, response.CodeBadRequest, "bad_request")
 	}
 
-	if req.DayCount <= 0 || req.Amount == "" {
+	if req.CycleDays <= 0 {
 		return response.Error(c, response.CodeBadRequest, "bad_request")
 	}
 
@@ -55,14 +55,14 @@ func (h *ChallengeHandler) Create(c *fiber.Ctx) error {
 	return response.SuccessWithMessage(c, "success", nil)
 }
 
-// Update 编辑挑战（同时编辑/新增奖池）
+// Update 编辑挑战
 func (h *ChallengeHandler) Update(c *fiber.Ctx) error {
 	var req dto.ChallengeUpsertRequest
 	if err := c.BodyParser(&req); err != nil {
 		return response.Error(c, response.CodeBadRequest, "bad_request")
 	}
 
-	if req.ID <= 0 || req.DayCount <= 0 || req.Amount == "" {
+	if req.ID <= 0 || req.CycleDays <= 0 {
 		return response.Error(c, response.CodeBadRequest, "bad_request")
 	}
 

@@ -141,22 +141,34 @@ CREATE TABLE `app_user_balance_log` (
 -- ----------------------------
 -- Table structure for app_challenge_config
 -- ----------------------------
+
 DROP TABLE IF EXISTS `app_challenge`;
 CREATE TABLE `app_challenge` (
-                                 `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '活动配置ID',
-                                 `day_count` INT NOT NULL DEFAULT 0 COMMENT '挑战天数 1/7/21',
-                                 `amount` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '单人挑战金额',
-                                 `checkin_start` SMALLINT UNSIGNED DEFAULT 0 COMMENT '每日打卡开始时间',
-                                 `checkin_end` SMALLINT UNSIGNED DEFAULT 0 COMMENT '每日打卡结束时间',
-                                 `platform_bonus` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '平台补贴金额',
-                                 `status` TINYINT NOT NULL DEFAULT 1 COMMENT '状态 1启用 2停用',
-                                 `sort` TINYINT NOT NULL DEFAULT 1 COMMENT '排序 1 2 3 4',
-                                 `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-                                 PRIMARY KEY (`id`),
-                                 UNIQUE KEY `uk_day_amount` (`day_count`,`amount`),
-                                 KEY `idx_status` (`status`),
-                                 KEY `idx_sort` (`sort` DESC)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin  COMMENT='打卡挑战活动配置';
+                                       `id` int(11) NOT NULL AUTO_INCREMENT,
+    -- 结算设置
+                                       `is_auto_settle` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:自动结算, 0:手动结算',
+                                       `settle_time` time NOT NULL DEFAULT '06:10:00' COMMENT '每日结算时间点',
+                                       `cycle_days` int(11) NOT NULL DEFAULT '1' COMMENT '挑战总天数',
+                                       `start_time` time NOT NULL DEFAULT '06:00:00' COMMENT '打卡开始时间',
+                                       `end_time` time NOT NULL DEFAULT '06:10:00' COMMENT '打卡结束时间',
+    -- 资金设置 (单位: 分，避免精度丢失)
+                                       `max_deposit_amount` int(11) NOT NULL DEFAULT '0' COMMENT '挑战金上限',
+                                       `min_withdraw_amount` int(11) NOT NULL DEFAULT '0' COMMENT '最低提现',
+                                       `max_daily_profit` int(11) NOT NULL COMMENT '个人每日最高收益上限',
+                                       `excess_tax_rate` int(11) NOT NULL DEFAULT '98' COMMENT '超过部分扣除比例(%)',
+                                       `min_daily_profit` int(11) NOT NULL COMMENT '个人每日最低收益',
+                                       `daily_platform_subsidy` int(11) NOT NULL COMMENT '每日平台补贴',
+                                       `uncheck_deduct_rate` int(11) NOT NULL DEFAULT '100' COMMENT '未打卡扣除金比例(%)',
+                                       `min_uncheck_users` int(11) NOT NULL DEFAULT '2' COMMENT '人数不足不扣除的阈值',
+    -- 佣金设置 (单位: 分)
+                                       `commission_follow` int(11) NOT NULL COMMENT '推荐关注佣金',
+                                       `commission_join` int(11) NOT NULL COMMENT '推荐参加挑战佣金',
+                                       `commission_l1` int(11) NOT NULL COMMENT '一级推荐佣金',
+                                       `commission_l2` int(11) NOT NULL COMMENT '二级推荐佣金',
+                                       `commission_l3` int(11) NOT NULL COMMENT '三级推荐佣金',
+                                       `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                       PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='打卡挑战活动规则配置表';
 
 -- ----------------------------
 -- Table structure for app_challenge_user
@@ -168,6 +180,7 @@ CREATE TABLE `app_user_challenge` (
                                       `challenge_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '活动配置ID',
                                       `pool_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '奖池ID',
                                       `challenge_amount` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '用户挑战金额',
+                                      `pre_recharge` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '用户预充值挑战金额',
                                       `start_date` DATE NOT NULL COMMENT '活动开始日期 YYYYMMDD',
                                       `end_date`  DATE NOT NULL COMMENT '活动结束日期 YYYYMMDD',
                                       `status` TINYINT NOT NULL DEFAULT 1 COMMENT '状态 1进行中 2成功 3失败',
@@ -254,54 +267,52 @@ CREATE TABLE `app_challenge_checkin_video_ad` (
 
 
 
--- ----------------------------
--- Table structure for app_challenge_pool
--- ----------------------------
-DROP TABLE IF EXISTS `app_challenge_pool`;
-CREATE TABLE `app_challenge_pool` (
-                                      `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '奖池ID',
-                                      `challenge_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '活动配置ID',
-                                      `start_date` datetime  DEFAULT NULL COMMENT '活动开始日期',
-                                      `end_date` datetime  DEFAULT NULL COMMENT '活动结束日期',
-                                      `total_amount` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '奖池当前总金额',
-                                      `settled` TINYINT NOT NULL DEFAULT 0 COMMENT '是否已结算 0否 1是',
-                                      `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-                                      PRIMARY KEY (`id`),
-                                      UNIQUE KEY `uk_config_date` (`challenge_id`,`start_date`),
-                                      KEY `idx_settled` (`settled`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='活动奖池表';
+DROP TABLE IF EXISTS `app_user_challenge_settlement`;
+CREATE TABLE `app_user_challenge_settlement` (
+                                                 `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+                                                 `user_challenge_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '关联用户挑战ID',
+                                                 `user_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID',
+                                                 `checkin_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '关联打卡ID',
+                                                 `settle_date` DATE NOT NULL COMMENT '结算日期',
 
--- ----------------------------
--- Table structure for app_challenge_pool_flow
--- ----------------------------
-DROP TABLE IF EXISTS `app_challenge_pool_flow`;
-CREATE TABLE `app_challenge_pool_flow` (
-                                           `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '奖池流水ID',
-                                           `pool_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '奖池ID',
-                                           `user_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID',
-                                           `amount` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '变动金额',
-                                           `type` TINYINT NOT NULL DEFAULT 0 COMMENT '类型 1报名 2失败 3平台补贴 4结算',
-                                           `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-                                           PRIMARY KEY (`id`),
-                                           KEY `idx_pool` (`pool_id`),
-                                           KEY `idx_user` (`user_id`),
-                                           KEY `idx_type_time` (`type`,`created_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='奖池资金流水';
+    -- 资金明细 (统一使用 DECIMAL(30,2))
+                                                 `base_profit` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '分到的原始金额(未扣除前)',
+                                                 `platform_subsidy` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '分到的平台补贴',
+                                                 `total_raw_profit` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '扣除前总收益',
+                                                 `tax_deduction` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '超过上限扣除的金额',
+                                                 `final_profit` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '实际到账收益',
+
+    -- 状态记录
+                                                 `is_settled` TINYINT NOT NULL DEFAULT 1 COMMENT '结算状态 1未结算 2自动结算 3手动结算',
+                                                 `settle_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '结算执行时间',
+
+                                                 PRIMARY KEY (`id`),
+                                                 UNIQUE KEY `uk_challenge_date` (`user_challenge_id`, `settle_date`),
+                                                 KEY `idx_user_date` (`user_id`, `settle_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='用户每日挑战收益结算表';
 
 -- ----------------------------
 -- Table structure for app_challenge_settlement
 -- ----------------------------
-DROP TABLE IF EXISTS `app_challenge_settlement`;
-CREATE TABLE `app_challenge_settlement` (
-                                            `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '结算ID',
-                                            `user_challenge_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户挑战ID',
-                                            `user_id` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID',
-                                            `reward` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '最终获得金额',
-                                            `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '结算时间',
+DROP TABLE IF EXISTS `app_challenge_pool_daily`;
+CREATE TABLE `app_challenge_pool_daily` (
+                                            `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+                                            `pool_date` DATE NOT NULL COMMENT '资金归属日期',
+                                            `total_users` INT(11) NOT NULL DEFAULT 0 COMMENT '当日参与总人数',
+                                            `success_users` INT(11) NOT NULL DEFAULT 0 COMMENT '当日成功打卡人数',
+                                            `fail_users` INT(11) NOT NULL DEFAULT 0 COMMENT '当日未打卡人数',
+
+    -- 资金汇总 (统一使用 DECIMAL(30,2))
+                                            `fail_deduct_pool` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '未打卡用户扣除的总金额',
+                                            `platform_subsidy_pool` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '当日平台总投入补贴',
+                                            `total_distributable` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '当日可分配总奖金',
+                                            `avg_profit` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '单人理论应分金额',
+
+                                            `system_tax_income` DECIMAL(30,2) NOT NULL DEFAULT 0.00 COMMENT '系统回收金额(阶梯扣除部分)',
+                                            `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                             PRIMARY KEY (`id`),
-                                            UNIQUE KEY `uk_challenge_user` (`user_challenge_id`,`user_id`),
-                                            KEY `idx_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='挑战结算结果';
+                                            UNIQUE KEY `uk_date` (`pool_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='全平台奖池日结算表';
 
 -- ----------------------------
 -- Table structure for app_challenge_daily_stat

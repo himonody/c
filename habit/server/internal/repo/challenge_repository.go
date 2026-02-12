@@ -1,18 +1,25 @@
 package repo
 
 import (
+	"context"
 	"habit/internal/model"
+	"habit/pkg/cache"
+	"habit/pkg/database"
+	"time"
 
-	"github.com/shopspring/decimal"
 	"gorm.io/gorm"
 )
 
 type ChallengeRepository struct {
-	db *gorm.DB
+	db  *gorm.DB
+	rdb *cache.Cache
 }
 
 func NewChallengeRepository(db *gorm.DB) *ChallengeRepository {
-	return &ChallengeRepository{db: db}
+	return &ChallengeRepository{
+		db:  db,
+		rdb: cache.NewCache(database.RedisClient),
+	}
 }
 
 func (r *ChallengeRepository) Create(tx *gorm.DB, challenge *model.AppChallenge) error {
@@ -46,33 +53,20 @@ func (r *ChallengeRepository) List(page, pageSize int) ([]*model.AppChallenge, i
 		return nil, 0, err
 	}
 	offset := (page - 1) * pageSize
-	if err := query.Offset(offset).Limit(pageSize).Order("created_at DESC").Find(&list).Error; err != nil {
+	if err := query.Offset(offset).Limit(pageSize).Order("updated_at DESC").Find(&list).Error; err != nil {
 		return nil, 0, err
 	}
 	return list, total, nil
 }
 
-type ChallengeWithLatestPool struct {
-	model.AppChallenge
-	PoolTotalAmount decimal.Decimal `gorm:"column:pool_total_amount"`
-	PoolSettled     int8            `gorm:"column:pool_settled"`
-}
-
-func (r *ChallengeRepository) ListWithLatestPool(page, pageSize int) ([]*ChallengeWithLatestPool, int64, error) {
-	var list []*ChallengeWithLatestPool
-	var total int64
-
-	base := r.db.Table("app_challenge AS c")
-	if err := base.Count(&total).Error; err != nil {
-		return nil, 0, err
+func (r *ChallengeRepository) Last() (*model.AppChallenge, error) {
+	var last *model.AppChallenge
+	_ = r.rdb.Get(context.Background(), cache.AppChallengeKey(), &last)
+	if last == nil {
+		if err := r.db.Model(&model.AppChallenge{}).Last(&last).Error; err != nil {
+			return nil, err
+		}
+		_ = r.rdb.Set(context.Background(), cache.AppChallengeKey(), last, time.Duration(24)*time.Hour)
 	}
-
-	offset := (page - 1) * pageSize
-	query := r.db.Table("app_challenge AS c").Select("c.*, p.total_amount AS pool_total_amount, p.settled AS pool_settled")
-	query = query.Joins("LEFT JOIN app_challenge_pool p ON p.challenge_id = c.id)")
-	if err := query.Offset(offset).Limit(pageSize).Order("c.created_at DESC").Scan(&list).Error; err != nil {
-		return nil, 0, err
-	}
-
-	return list, total, nil
+	return last, nil
 }

@@ -39,7 +39,22 @@ func SetupAppRoutes(api fiber.Router, appAuthHdl *appAuthHandler.AuthHandler, au
 	// Initialize challenge stat dependencies
 	challengeRepo := repo.NewChallengeStatRepository(database.DB)
 	challengeSvc := challengeService.NewChallengeStatService(challengeRepo, logger.Logger)
-	challengeHdl := challengeHandler.NewChallengeStatHandler(challengeSvc)
+	
+	// Initialize challenge action dependencies
+	userRepo := repo.NewUserRepository(database.DB)
+	challengeConfigRepo := repo.NewChallengeRepository(database.DB)
+	userChallengeRepo := repo.NewUserChallengeRepository(database.DB)
+	userChallengeCheckinRepo := repo.NewUserChallengeCheckinRepository(database.DB)
+	challengeActionSvc := challengeService.NewChallengeActionService(userRepo, challengeConfigRepo, userChallengeRepo, userChallengeCheckinRepo, logger.Logger)
+	
+	challengeHdl := challengeHandler.NewChallengeStatHandler(challengeSvc, challengeActionSvc)
+
+	// Initialize user challenge stat dependencies
+	challengeRepo2 := repo.NewChallengeRepository(database.DB)
+	checkinRepo := repo.NewUserChallengeCheckinRepository(database.DB)
+	settlementRepo := repo.NewUserChallengeSettlementRepository(database.DB)
+	userChallengeStatSvc := challengeService.NewUserChallengeStatService(userRepo, challengeRepo2, checkinRepo, settlementRepo, logger.Logger)
+	userChallengeStatHdl := challengeHandler.NewUserChallengeStatHandler(userChallengeStatSvc)
 
 	// Initialize leaderboard dependencies
 	leaderboardRepo := repo.NewLeaderboardRepository(database.DB)
@@ -52,7 +67,7 @@ func SetupAppRoutes(api fiber.Router, appAuthHdl *appAuthHandler.AuthHandler, au
 	inviteHdl := inviteHandler.NewInviteHandler(inviteSvc)
 
 	// Initialize SSE dependencies
-	userRepo := repo.NewUserRepository(database.DB)
+	userRepo = repo.NewUserRepository(database.DB)
 	sseSvc := sseService.NewSSEService(logger.Logger, userRepo)
 	sseHdl := sseHandler.NewSSEHandler(sseSvc)
 
@@ -83,7 +98,10 @@ func SetupAppRoutes(api fiber.Router, appAuthHdl *appAuthHandler.AuthHandler, au
 	// 挑战路由
 	appProtected.Post("/challenge/total-stat", challengeHdl.TotalStat)
 	appProtected.Post("/challenge/start", challengeHdl.Start)
-	appProtected.Post("/challenge/money", challengeHdl.Start)
+	appProtected.Post("/challenge/money", challengeHdl.Money)
+	appProtected.Post("/challenge/query", challengeHdl.Query)
+	appProtected.Post("/challenge/checkin", challengeHdl.Checkin)
+	appProtected.Post("/challenge/user-stats", userChallengeStatHdl.GetUserChallengeStats)
 
 	// 排行榜路由
 	appProtected.Post("/leaderboard/list", leaderboardHdl.List)

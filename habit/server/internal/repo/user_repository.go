@@ -167,3 +167,32 @@ func (r *UserRepository) invalidateUserCache(userID int64) {
 	cacheKey := cache.UserCacheKey(userID)
 	_ = r.cache.Delete(ctx, cacheKey)
 }
+
+// FindByIDs 根据ID列表查找用户
+func (r *UserRepository) FindByIDs(userIDs []int64) ([]*model.AppUser, error) {
+	if len(userIDs) == 0 {
+		return []*model.AppUser{}, nil
+	}
+	
+	var users []*model.AppUser
+	err := r.db.Where("id IN ?", userIDs).Find(&users).Error
+	return users, err
+}
+
+// ListWithPagination 分页查询所有用户
+func (r *UserRepository) ListWithPagination(page, pageSize int) ([]*model.AppUser, int64, error) {
+	var users []*model.AppUser
+	var total int64
+	
+	offset := (page - 1) * pageSize
+	
+	if err := r.db.Model(&model.AppUser{}).Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+	
+	if err := r.db.Offset(offset).Limit(pageSize).Find(&users).Error; err != nil {
+		return nil, 0, err
+	}
+	
+	return users, total, nil
+}

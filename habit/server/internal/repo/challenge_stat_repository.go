@@ -41,3 +41,8 @@ func (r *ChallengeStatRepository) GetTotalStat() (*model.AppChallengeTotalStat, 
 	_ = r.cache.Set(ctx, cacheKey, &stat, cache.ChallengeStatExpiration)
 	return &stat, nil
 }
+
+// Create 创建统计记录
+func (r *ChallengeStatRepository) Create(stat *model.AppChallengeDailyStat) error {
+	return r.db.Create(stat).Error
+}

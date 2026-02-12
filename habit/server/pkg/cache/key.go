@@ -16,14 +16,14 @@ import (
 // ============================================
 const (
 	// 用户相关缓存过期时间
-	UserCacheExpiration     = 30 * time.Minute // 用户信息缓存
-	UserTokenExpiration     = 24 * time.Hour   // 用户Token
-	UserSessionExpiration   = 24 * time.Hour   // 用户会话
+	UserCacheExpiration   = 30 * time.Minute // 用户信息缓存
+	UserTokenExpiration   = 24 * time.Hour   // 用户Token
+	UserSessionExpiration = 24 * time.Hour   // 用户会话
 
 	// 管理员相关缓存过期时间
-	AdminCacheExpiration    = 30 * time.Minute // 管理员信息缓存
-	AdminTokenExpiration    = 24 * time.Hour   // 管理员Token
-	AdminSessionExpiration  = 24 * time.Hour   // 管理员会话
+	AdminCacheExpiration   = 30 * time.Minute // 管理员信息缓存
+	AdminTokenExpiration   = 24 * time.Hour   // 管理员Token
+	AdminSessionExpiration = 24 * time.Hour   // 管理员会话
 
 	// Token黑名单过期时间
 	TokenBlacklistExpiration = 24 * time.Hour
@@ -35,7 +35,7 @@ const (
 	ChallengeStatExpiration = 5 * time.Minute // 平台累计统计缓存
 
 	// 其他缓存过期时间
-	DefaultCacheExpiration = 10 * time.Minute  // 默认缓存时间
+	DefaultCacheExpiration = 10 * time.Minute // 默认缓存时间
 )
 
 // ============================================
@@ -58,6 +58,10 @@ func UserByUsernameCacheKey(username string) string {
 // Key: user:token:{userID}
 func UserTokenKey(userID int64) string {
 	return fmt.Sprintf("user:token:%d", userID)
+}
+
+func AppChallengeKey() string {
+	return fmt.Sprintf("user:challenge")
 }
 
 // UserSessionKey 用户会话信息
